@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamQuiz.Pages.LoginPage"
+             xmlns:extension="clr-namespace:XamQuiz.Helpers"
+             Visual="Material">
+    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+        <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"/>
+        <StackLayout Padding="16" HorizontalOptions="FillAndExpand" >
+            <Entry Placeholder="User name"
+                   TextColor="White"
+                   PlaceholderColor="White"/>
+            <Entry Placeholder="Password"
+                   TextColor="White"
+                   PlaceholderColor="White"/>
+        </StackLayout>
+        <Button Text="Login" 
+                CornerRadius="3"
+                HorizontalOptions="Fill"
+                Margin="16,0"
+                Padding="0,3"
+                VerticalOptions="Center"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="Red"
+                Clicked="Handle_Clicked"/>   
+    </Grid>
+</ContentPage>

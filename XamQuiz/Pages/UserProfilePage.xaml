@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamQuiz.Pages.UserProfilePage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:l="clr-namespace:XamQuiz.Pages"
+             xmlns:extension="clr-namespace:XamQuiz.Helpers"
+             BindingContext="XamQuiz.ViewModels.UserProfileViewModel"
+             x:Name="this"
+             BackgroundColor="#FDF7F3">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <l:UserItemTemplateSelector x:Key="UserItemTemplateSelector">
+                <l:UserItemTemplateSelector.DefaultTemplate>
+                    <DataTemplate>
+                        <Label FontSize="Medium" Margin="0, 0, 7, 0" />
+                    </DataTemplate>
+                </l:UserItemTemplateSelector.DefaultTemplate>
+                <l:UserItemTemplateSelector.LoggedInTemplate>
+                    <DataTemplate>
+                        <Label FontSize="Medium" Margin="0, 0, 7, 0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span TextColor="DarkRed" />
+                                    <Span TextColor="DarkRed" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </DataTemplate>
+                </l:UserItemTemplateSelector.LoggedInTemplate>
+            </l:UserItemTemplateSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView VerticalOptions="Fill">
+        <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding User}" BindableLayout.ItemTemplateSelector="{StaticResource UserItemTemplateSelector}">
+            <!-- Header -->
+            <Frame VerticalOptions="Start" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!-- Background -->
+                    <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" Aspect="Fill"
+                           Margin="0,-60,0,0"
+                           VerticalOptions="Fill" Grid.RowSpan="4" />
+                    <!-- Profile image -->
+                    <ffimageloading:CachedImage Source="{Binding User.Avatar}" WidthRequest="120" HeightRequest="120" DownsampleToViewSize="true" Margin="0, 40, 0, 0" HorizontalOptions="Center">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation BorderSize="2" BorderHexColor="#D8D8D8" />
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <!-- Name and score -->
+                    <Label HorizontalOptions="Center"
+                           Text="{Binding User.UserName}" TextColor="White" Style="{StaticResource HeaderStyle}"
+                           FontSize="24" Grid.Row="1" />
+                     <Label HorizontalOptions="Center"
+                           Text="{Binding User.Country}"
+                           FontSize="24" Grid.Row="2" />
+                    <Label Text="{Binding User.Id, StringFormat='Rank - {0}'}" TextColor="#FBC7BE" HorizontalOptions="Center" Grid.Row="3" Margin="0, 0, 0, 15" />
+                </Grid>
+            </Frame>
+            <StackLayout Spacing="0" Padding="16" Grid.Row="1">
+                <!-- Scores -->
+                <Label Text="{Binding User.Score, StringFormat='Your curent score: {0} points'}"
+                       Style="{StaticResource HeaderStyle}"
+                       Margin="0, 0, 0, 7" />
+            </StackLayout>
+            <FlexLayout Direction="Column" x:Name="rankingList" JustifyContent="SpaceEvenly">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="16" Orientation="Horizontal">
+                            <ffimageloading:CachedImage Source="{Binding PublicAvatar}" HeightRequest="50" DownsampleToViewSize="true" HorizontalOptions="Start" VerticalOptions="Center">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation BorderSize="2" BorderHexColor="#D8D8D8" />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding UserName, StringFormat=' {0} '}" Style="{StaticResource HeaderStyle}"/>
+                                        <Span Text="{Binding Country}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="{Binding Score, StringFormat='{0} points'}" Style="{StaticResource HeaderStyle}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

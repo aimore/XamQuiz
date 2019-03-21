@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace XamQuiz.iOS
 {
@@ -23,8 +24,9 @@ namespace XamQuiz.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            FormsMaterial.Init();
             LoadApplication(new App());
-
             return base.FinishedLaunching(app, options);
         }
     }

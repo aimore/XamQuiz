@@ -1,5 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XamQuiz.App">
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:XamQuiz" x:Class="XamQuiz.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="CustomFont">
+                <On Platform="Android" Value="DK Lemon Yellow Sun.otf#DK Lemon Yellow Sun" />
+                <On Platform="iOS" Value="DK Lemon Yellow Sun" />
+            </OnPlatform>
+             <OnPlatform x:Key="GlobalTextColor"
+              x:TypeArguments="Color"
+              Android="#191919"
+              WinPhone="#161616" />
+            <Style x:Key="HeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="{StaticResource CustomFont}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource GlobalTextColor}" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

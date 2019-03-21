@@ -11,5 +11,26 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.870-pre" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.5.870-pre" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Custom\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Pages\Templates\" />
+    <Folder Include="Custom\Visual\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resource\Countries.json" />
+    <None Remove="Resources\bkgnd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bkgnd.jpg" />
   </ItemGroup>
 </Project>
