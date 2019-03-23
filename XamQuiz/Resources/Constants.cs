@@ -8,5 +8,7 @@ namespace XamQuiz.Resource
         public static string AvatarEndpoint = @"https://api.adorable.io/avatars/100/";
         public static string AvatarEndpointSmall = @"https://api.adorable.io/avatars/50/";
         public static string AvatarEndpointExtesion = "@adorable.io.png";
+        public static readonly string OfflineQuizPath = @"quiz.db";
+        public static readonly string CountriesJsonPath = "XamQuiz.Resources.Countries.json";
     }
 }

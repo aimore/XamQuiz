@@ -37,6 +37,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>DK Lemon Yellow Sun.otf</string>
+		<string>Roboto-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

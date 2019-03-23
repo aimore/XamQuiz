@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Reflection;
 using Xamarin.Forms;
 using XamQuiz.ViewModels;
 
@@ -15,6 +15,7 @@ namespace XamQuiz.Pages
             InitializeComponent();
             this.BindingContext = _vm = new UserProfileViewModel();
             BindableLayout.SetItemsSource(rankingList, _vm.UserScores);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

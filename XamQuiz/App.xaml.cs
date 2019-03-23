@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamQuiz.Pages;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamQuiz
@@ -11,7 +12,7 @@ namespace XamQuiz
         {
             InitializeComponent();
 
-            MainPage = new Pages.LoginPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

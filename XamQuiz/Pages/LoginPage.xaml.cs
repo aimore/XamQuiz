@@ -1,36 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+using XamQuiz.Model;
 
 namespace XamQuiz.Pages
 {
     public partial class LoginPage : ContentPage
-    {
-        Pages.UserProfilePage page;
+    {        ViewModels.LoginPageViewModel vm;
         public LoginPage()
         {
             InitializeComponent();
-            if(page == null)
-                page = new Pages.UserProfilePage();
-        }
-        bool _isBusy;
-        async void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            if (_isBusy)
-                return;
-            try
-            {
-                if (page == null)
-                    page = new Pages.UserProfilePage();
-                _isBusy = true;
-                await Navigation.PushModalAsync(page, true);
-            }
-            catch (Exception ex)
-            {
-                return;
-            }
-            _isBusy = false;
+            if(BindingContext == null)
+                BindingContext = vm = new ViewModels.LoginPageViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

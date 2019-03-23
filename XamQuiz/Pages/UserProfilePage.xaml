@@ -7,8 +7,7 @@
              xmlns:l="clr-namespace:XamQuiz.Pages"
              xmlns:extension="clr-namespace:XamQuiz.Helpers"
              BindingContext="XamQuiz.ViewModels.UserProfileViewModel"
-             x:Name="this"
-             BackgroundColor="#FDF7F3">
+             x:Name="this">
     <ContentPage.Resources>
         <ResourceDictionary>
             <l:UserItemTemplateSelector x:Key="UserItemTemplateSelector">
@@ -35,7 +34,8 @@
     <ScrollView VerticalOptions="Fill">
         <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding User}" BindableLayout.ItemTemplateSelector="{StaticResource UserItemTemplateSelector}">
             <!-- Header -->
-            <Frame VerticalOptions="Start" Padding="0" CornerRadius="0">
+            <Frame VerticalOptions="Start" Padding="0" 
+                    CornerRadius="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -45,7 +45,7 @@
                     </Grid.RowDefinitions>
                     <!-- Background -->
                     <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" Aspect="Fill"
-                           Margin="0,-60,0,0"
+                           Margin="0,-160,0,0"
                            VerticalOptions="Fill" Grid.RowSpan="4" />
                     <!-- Profile image -->
                     <ffimageloading:CachedImage Source="{Binding User.Avatar}" WidthRequest="120" HeightRequest="120" DownsampleToViewSize="true" Margin="0, 40, 0, 0" HorizontalOptions="Center">

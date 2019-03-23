@@ -1,30 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamQuiz.Pages.LoginPage"
-             xmlns:extension="clr-namespace:XamQuiz.Helpers"
-             Visual="Material">
-    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
-        <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" Aspect="Fill"
-               HorizontalOptions="FillAndExpand"
-               VerticalOptions="FillAndExpand"/>
-        <StackLayout Padding="16" HorizontalOptions="FillAndExpand" >
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XamQuiz.Pages.LoginPage"
+    xmlns:extension="clr-namespace:XamQuiz.Helpers"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    Visual="Material">
+    <Grid VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" 
+               Grid.RowSpan="3"
+               Aspect="Fill"/>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Spacing="16">
+            <Label Text="XAM QUIZ APP" TextColor="White" 
+                   Style="{StaticResource HeaderStyle}"
+                   FontSize="40" />
+            <ffimageloading:CachedImage 
+                x:Name="avatar"
+                Source="{Binding UserAvatar, Mode=TwoWay}"
+                Aspect="AspectFit"
+                HeightRequest="100"
+                FadeAnimationEnabled="true">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation BorderSize="2" BorderHexColor="#D8D8D8" />
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+        </StackLayout>
+        <StackLayout Grid.Row="1"
+                     VerticalOptions="FillAndExpand"
+                     Margin="16,0">
             <Entry Placeholder="User name"
                    TextColor="White"
+                   Keyboard="Text"
+                   Text="{Binding UserName, Mode=TwoWay}"
                    PlaceholderColor="White"/>
             <Entry Placeholder="Password"
                    TextColor="White"
+                   IsVisible="false"
                    PlaceholderColor="White"/>
-        </StackLayout>
-        <Button Text="Login" 
+            <Button Text="Login"
                 CornerRadius="3"
-                HorizontalOptions="Fill"
-                Margin="16,0"
+                HorizontalOptions="FillAndExpand"
                 Padding="0,3"
-                VerticalOptions="Center"
+                Margin="0,40,0,0"
+                VerticalOptions="EndAndExpand"
+                FontSize="Medium"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="Red"
-                Clicked="Handle_Clicked"/>   
+                Command="{Binding LoginCommand}"/> 
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                     Margin="16,40"
+                     VerticalOptions="End"
+                     Grid.Row="2">
+            <Label Text="Forgot password?" HorizontalOptions="CenterAndExpand"
+                   TextColor="White"
+                   FontSize="Medium"
+                   VerticalOptions="Center"/>
+            <BoxView Color="#c5cfd3" VerticalOptions="Fill" WidthRequest="1" 
+                     HeightRequest="6"
+                     HorizontalOptions="Center" />
+            <Label Text="Create an account" HorizontalOptions="CenterAndExpand" 
+                   TextColor="White"
+                   FontSize="Medium"
+                   VerticalOptions="Center"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

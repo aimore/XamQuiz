@@ -14,6 +14,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.870-pre" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.5.870-pre" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

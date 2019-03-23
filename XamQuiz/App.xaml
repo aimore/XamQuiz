@@ -6,7 +6,11 @@
                 <On Platform="Android" Value="DK Lemon Yellow Sun.otf#DK Lemon Yellow Sun" />
                 <On Platform="iOS" Value="DK Lemon Yellow Sun" />
             </OnPlatform>
-             <OnPlatform x:Key="GlobalTextColor"
+            <OnPlatform x:TypeArguments="x:String" x:Key="DefaultTextFont">
+                <On Platform="Android" Value="Roboto-Regular.ttf#Roboto-Regular.ttf" />
+                <On Platform="iOS" Value="Roboto-Regular" />
+            </OnPlatform>
+            <OnPlatform x:Key="GlobalTextColor"
               x:TypeArguments="Color"
               Android="#191919"
               WinPhone="#161616" />
@@ -16,6 +20,7 @@
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="{StaticResource DefaultTextFont}" />
                 <Setter Property="TextColor" Value="{StaticResource GlobalTextColor}" />
             </Style>
         </ResourceDictionary>

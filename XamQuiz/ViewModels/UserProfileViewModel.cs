@@ -7,9 +7,22 @@ namespace XamQuiz.ViewModels
 {
     public class UserProfileViewModel : BaseViewModel
     {
-        public UserScore User { get; set; }
         private static readonly Random random = new Random();
-        public List<PublicUser> UserScores { get; set; }
+
+        public UserScore _user;
+        public UserScore User
+        {
+            get => Get(_user);
+            set => Set(value);
+        }
+
+        public List<PublicUser> _userScores;
+        public List<PublicUser> UserScores
+        {
+            get => Get(_userScores);
+            set => Set(value);
+        }
+
 
         public UserProfileViewModel()
         {
