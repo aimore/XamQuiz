@@ -43,6 +43,7 @@
                    PlaceholderColor="White"/>
             <Entry Placeholder="Password"
                    TextColor="White"
+                   Text="{Binding UserName}"
                    IsVisible="false"
                    PlaceholderColor="White"/>
             <Button Text="Login"
@@ -64,7 +65,12 @@
             <Label Text="Forgot password?" HorizontalOptions="CenterAndExpand"
                    TextColor="White"
                    FontSize="Medium"
-                   VerticalOptions="Center"/>
+                   VerticalOptions="Center">
+           <!--     <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="AnimatePanel" />
+                </Label.GestureRecognizers>-->
+            </Label>
             <BoxView Color="#c5cfd3" VerticalOptions="Fill" WidthRequest="1" 
                      HeightRequest="6"
                      HorizontalOptions="Center" />

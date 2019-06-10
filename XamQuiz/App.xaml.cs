@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamQuiz.Pages;
@@ -11,13 +12,14 @@ namespace XamQuiz
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            Preferences.Set("bottomsheetHeight", mainDisplayInfo.Height / 4);
         }
 
         protected override void OnSleep()

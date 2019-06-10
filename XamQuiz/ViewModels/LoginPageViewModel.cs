@@ -29,6 +29,7 @@ namespace XamQuiz.ViewModels
         public ICommand LoginCommand => Cmd() ?? RegCmd(async () =>
         {
             isTimerRunning = false;
+            Xamarin.Essentials.Preferences.Set(nameof(UserName), UserName);
             await Application.Current.MainPage.Navigation.PushAsync(userProfilePage, true);
             //throw new Exception(); // shouldSuppressExceptions = true, will be no crash
 
@@ -40,6 +41,13 @@ namespace XamQuiz.ViewModels
         public string UserAvatar
         {
             get => Get(_userAvatar);
+            set => Set(value);
+        }
+
+        public string _userName;
+        public string UserName
+        {
+            get => Get(_userName);
             set => Set(value);
         }
     }

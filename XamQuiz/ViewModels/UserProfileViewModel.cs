@@ -32,11 +32,12 @@ namespace XamQuiz.ViewModels
 
         UserScore GetUser()
         {
+            var savedUser = Xamarin.Essentials.Preferences.Get("UserName", "Zezin da Paraiba");
             return new UserScore
             {
                 Id = new Random().Next(1, 100).ToString(),
                 Score = new Random().Next(1, 1000),
-                UserName = "Zezin da Paraiba",
+                UserName = savedUser,
                 Country = @"🇳🇿"
             };
         }
