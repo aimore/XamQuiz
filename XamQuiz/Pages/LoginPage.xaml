@@ -5,20 +5,31 @@
     xmlns:extension="clr-namespace:XamQuiz.Helpers"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true" 
+    xmlns:pages="clr-namespace:XamQuiz.Pages"             
     Visual="Material">
     <Grid VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Image Source="{extension:ImageResource XamQuiz.Resources.bkgnd.jpg}" 
-               Grid.RowSpan="3"
-               Aspect="Fill"/>
-        <StackLayout VerticalOptions="CenterAndExpand"
-                     HorizontalOptions="CenterAndExpand"
-                     Spacing="16">
+               Grid.RowSpan="4"
+               Aspect="Fill">
+            <Image.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,-40,0,-50" />
+                    <On Platform="Android" Value="0,0,0,0" />
+                </OnPlatform>
+            </Image.Margin>
+        </Image>
+        <StackLayout VerticalOptions="StartAndExpand"
+                     Spacing="16"
+                     HorizontalOptions="CenterAndExpand">
             <Label Text="XAM QUIZ APP" TextColor="White" 
                    Style="{StaticResource HeaderStyle}"
                    FontSize="40" />
@@ -26,7 +37,7 @@
                 x:Name="avatar"
                 Source="{Binding UserAvatar, Mode=TwoWay}"
                 Aspect="AspectFit"
-                HeightRequest="100"
+                HeightRequest="80"
                 FadeAnimationEnabled="true">
                 <ffimageloading:CachedImage.Transformations>
                     <fftransformations:CircleTransformation BorderSize="2" BorderHexColor="#D8D8D8" />
@@ -34,42 +45,52 @@
             </ffimageloading:CachedImage>
         </StackLayout>
         <StackLayout Grid.Row="1"
-                     VerticalOptions="FillAndExpand"
+                     VerticalOptions="CenterAndExpand"
                      Margin="16,0">
             <Entry Placeholder="User name"
                    TextColor="White"
                    Keyboard="Text"
                    Text="{Binding UserName, Mode=TwoWay}"
                    PlaceholderColor="White"/>
-            <Entry Placeholder="Password"
+            <StackLayout x:Name="container" Spacing="5">
+                <Entry Placeholder="Email"
                    TextColor="White"
-                   Text="{Binding UserName}"
-                   IsVisible="false"
+                   Keyboard="Email"
                    PlaceholderColor="White"/>
-            <Button Text="Login"
+                <Entry Placeholder="Password"
+                   TextColor="White"
+                   IsPassword="true"
+                   PlaceholderColor="White"/>
+                <Entry Placeholder="Confirm password"
+                   TextColor="White"
+                   IsPassword="true"
+                   PlaceholderColor="White"/>
+            </StackLayout>
+        </StackLayout>
+        <Button Text="Login"
+                x:Name="btn"
+                Grid.Row="2"
+                Margin="16,0"
                 CornerRadius="3"
                 HorizontalOptions="FillAndExpand"
                 Padding="0,3"
-                Margin="0,40,0,0"
-                VerticalOptions="EndAndExpand"
                 FontSize="Medium"
                 TextColor="White"
                 FontAttributes="Bold"
                 BackgroundColor="Red"
-                Command="{Binding LoginCommand}"/> 
-        </StackLayout>
+                Command="{Binding LoginCommand}"/>
         <StackLayout Orientation="Horizontal"
-                     Margin="16,40"
+                     Margin="16,20"
                      VerticalOptions="End"
-                     Grid.Row="2">
+                     Grid.Row="3">
             <Label Text="Forgot password?" HorizontalOptions="CenterAndExpand"
                    TextColor="White"
                    FontSize="Medium"
                    VerticalOptions="Center">
-           <!--     <Label.GestureRecognizers>
+                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
-                        Tapped="AnimatePanel" />
-                </Label.GestureRecognizers>-->
+                        Tapped="ShowPopup" />
+                </Label.GestureRecognizers>
             </Label>
             <BoxView Color="#c5cfd3" VerticalOptions="Fill" WidthRequest="1" 
                      HeightRequest="6"
@@ -77,7 +98,14 @@
             <Label Text="Create an account" HorizontalOptions="CenterAndExpand" 
                    TextColor="White"
                    FontSize="Medium"
-                   VerticalOptions="Center"/>
+                   VerticalOptions="Center">
+               <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="Register" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
+        <pages:ResetPasswordPopup x:Name="popup"
+                            Grid.RowSpan="4"/>
     </Grid>
 </ContentPage>
