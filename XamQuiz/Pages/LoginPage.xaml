@@ -22,7 +22,7 @@
                Aspect="Fill">
             <Image.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="0,-40,0,-50" />
+                    <On Platform="iOS" Value="0,-50,0,-40" />
                     <On Platform="Android" Value="0,0,0,0" />
                 </OnPlatform>
             </Image.Margin>
